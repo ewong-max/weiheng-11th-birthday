@@ -295,28 +295,6 @@ footer b{font-family:Fredoka;color:var(--purple);font-size:18px}
           </div>
         </div>
 
-        <div class="row counts" id="counts">
-          <div class="field">
-            <label for="kids">Kids coming</label>
-            <select id="kids" name="kids"><option>1</option><option>2</option><option>3</option><option>4</option></select>
-          </div>
-          <div class="field">
-            <label for="adults">Adults coming</label>
-            <select id="adults" name="adults"><option>0</option><option selected>1</option><option>2</option><option>3</option><option>4</option></select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label for="parent">Parent's name</label>
-            <input id="parent" name="parent" required autocomplete="name">
-          </div>
-          <div class="field">
-            <label for="phone">Parent's phone</label>
-            <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="012-345 6789">
-          </div>
-        </div>
-
         <div class="field counts" id="allergyField">
           <label for="allergies">Allergies or food notes <small>(optional)</small></label>
           <input id="allergies" name="allergies" placeholder="e.g. no peanuts, vegetarian">
@@ -480,7 +458,7 @@ document.getElementById("music").addEventListener("click", music.toggle);
 /* ========= RSVP form ========= */
 (function(){
   const form = document.getElementById("rsvpForm"), err = document.getElementById("err"), btn = document.getElementById("submitBtn");
-  const counts = [document.getElementById("counts"), document.getElementById("allergyField")];
+  const counts = [document.getElementById("allergyField")];
   form.addEventListener("change", e => {
     if (e.target.name === "attending") counts.forEach(c => c.classList.toggle("hide", e.target.value === "No"));
   });
@@ -490,9 +468,7 @@ document.getElementById("music").addEventListener("click", music.toggle);
     const d = Object.fromEntries(new FormData(form).entries());
     Object.keys(d).forEach(k => d[k] = String(d[k]).trim());
     if (!d.friend) { err.textContent = "Please enter the friend's name."; return form.friend.focus(); }
-    if (!d.parent) { err.textContent = "Please enter the parent's name."; return form.parent.focus(); }
-    if (!/^[+\d][\d\s-]{6,}$/.test(d.phone)) { err.textContent = "Please enter a valid phone number."; return form.phone.focus(); }
-    if (d.attending === "No") { d.kids = "0"; d.adults = "0"; d.allergies = ""; }
+    if (d.attending === "No") d.allergies = "";
 
     if (!RSVP_URL) { err.textContent = "RSVP isn't switched on yet — please message Wei Heng's parents directly."; return; }
 

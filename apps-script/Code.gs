@@ -18,10 +18,6 @@ function doPost(e) {
       new Date(),
       clean(p.friend),
       p.attending === 'No' ? 'No' : 'Yes',
-      Number(p.kids) || 0,
-      Number(p.adults) || 0,
-      clean(p.parent),
-      clean(p.phone),
       clean(p.allergies),
       clean(p.message)
     ]);
