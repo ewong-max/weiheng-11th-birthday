@@ -305,10 +305,6 @@ footer b{font-family:Fredoka;color:var(--purple);font-size:18px}
         <button class="btn btn-yellow" type="button" id="another" style="margin-top:14px;font-size:16px;padding:11px 22px">RSVP for another friend</button>
       </div>
     </div>
-
-    <div class="share">
-      <a id="waShare" href="#" target="_blank" rel="noopener">💬 Share this invite on WhatsApp</a>
-    </div>
   </div>
 </section>
 
@@ -484,10 +480,6 @@ document.getElementById("music").addEventListener("click", music.toggle);
     document.getElementById("thanks").style.display = "none"; form.style.display = "block"; form.friend.focus();
   });
 })();
-
-/* ========= WhatsApp share ========= */
-document.getElementById("waShare").href = "https://wa.me/?text=" + encodeURIComponent(
-  "🎉 You're invited to Wei Heng's 11th Birthday Party!\n📅 Sun, 8 Nov 2026, 12pm–5pm\n📍 Next Gen Theme Park, 1 Utama\nRSVP here: " + location.href.split("#")[0]);
 </script>
 </body>
 </html>
